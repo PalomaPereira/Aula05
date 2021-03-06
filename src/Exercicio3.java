@@ -19,71 +19,107 @@ public class Exercicio3 {
 
 		Scanner leitor = new Scanner(System.in);
 
-		String[] nome = new String[50];
-		String[] setor = new String[50];
-		String[] transporte = new String[50];
-		int placa;
+		// Onde 1º Nome / 2º Setor / 3º Transporte / 4º Placa
+		String[][] colaborador = new String[150][4];
+		String meiodetransporte = new String();
 
-		for (int i = 1; i <= 4; i++) {
+		/*
+		 * String[] nome = new String[50]; String[] setor = new String[50]; String[]
+		 * transporte = new String[50]; int placa;
+		 */
+
+		for (int i = 0; i < colaborador.length; i++) {
 
 			System.out.println("Informe seu nome:");
-			nome[i] = leitor.next();
+			// nome[i] = leitor.next();
+			colaborador[i][0] = leitor.next();
 
 			System.out.println("Informe seu setor:");
-			setor[i] = leitor.next();
+			// setor[i] = leitor.next();
+			colaborador[i][1] = leitor.next();
 
-			System.out.println("Informe seu meio de transporte (CARRO ou ÔNIBUS):");
-			transporte[i] = leitor.next();
+			System.out.println("Informe seu meio de transporte:");
+			System.out.println("1 - Carro");
+			System.out.println("2 - Ônibus");
+			// transporte[i] = leitor.next();
+			colaborador[i][2] = leitor.next();
 
-			if (transporte[i].equalsIgnoreCase("ÔNIBUS") || transporte[i].equalsIgnoreCase("ONIBUS")) {
-
+			// if (transporte[i].equalsIgnoreCase("ÔNIBUS") ||
+			// transporte[i].equalsIgnoreCase("ONIBUS")) {
+			if (colaborador[i][2].equals("2")) {
 				System.out.println("Rodízio não se aplica!");
+				colaborador[i][3] = "NA";
 
-			} else {
+			} else if (colaborador[i][2].equals("1")) {
 
 				System.out.println("Informe o último dígito numérico da placa do carro:");
-				placa = leitor.nextInt();
+				// placa = leitor.nextInt();
+				colaborador[i][3] = leitor.next();
 
-				switch (placa) {
-				case 0:
+				switch (colaborador[i][3]) {
+				case "0":
 					System.out.println("O seu rodízio é na sexta-feira!");
 					break;
-				case 1:
+				case "1":
 					System.out.println("O seu rodízio é na segunda-feira!");
 					break;
-				case 2:
+				case "2":
 					System.out.println("O seu rodízio é na segunda-feira!");
 					break;
-				case 3:
+				case "3":
 					System.out.println("O seu rodízio é na terça-feira!");
 					break;
-				case 4:
+				case "4":
 					System.out.println("O seu rodízio é na terça-feira!");
 					break;
-				case 5:
+				case "5":
 					System.out.println("O seu rodízio é na quarta-feira!");
 					break;
-				case 6:
+				case "6":
 					System.out.println("O seu rodízio é na quarta-feira!");
 					break;
-				case 7:
+				case "7":
 					System.out.println("O seu rodízio é na quinta-feira!");
 					break;
-				case 8:
+				case "8":
 					System.out.println("O seu rodízio é na quinta-feira!");
 					break;
-				case 9:
+				case "9":
 					System.out.println("O seu rodízio é na sexta-feira!");
 					break;
 
 				default:
+					System.out.println("Código inválido! O Cadastro irá recomeçar!");
+					for (int coluna = 0; coluna < colaborador[0].length; coluna++) {
+						colaborador[i][coluna] = "";
+					}
+					i--;
 					break;
 				}
+			} else {
+				System.out.println("Código inválido! O Cadastro irá recomeçar!");
+				for (int coluna = 0; coluna < colaborador[0].length; coluna++) {
+					colaborador[i][coluna] = "";
+				}
+				i--;
 			}
 
 		}
 
 		leitor.close();
+
+		for (int j = 0; j < colaborador.length; j++) {
+
+			if (colaborador[j][2].equals("1")) {
+				meiodetransporte = "carro";
+			} else {
+				meiodetransporte = "ônibus";
+			}
+
+			System.out.println("O colaborador " + colaborador[j][0] + ", do setor " + colaborador[j][1] + ", vem de "
+					+ meiodetransporte + ".");
+
+		}
 	}
 
 }
